@@ -1,27 +1,27 @@
-const UglifyJS = require("uglify-js");
-const fs = require('fs');
-const uglifycss = require('uglifycss');
+/**
+ * UglifyCSS
+ * Port of YUI CSS Compressor to NodeJS
+ * Author: Franck Marcia - https://github.com/fmarcia
+ * MIT licenced
+ */
 
-let files = [
-    'nipplejs.js',
-    'shaders.js',
-    'storage.js',
-    'gamepad.js',
-    'GameManager.js',
-    'socket.io.min.js',
-    'emulator.js'
-]
-let code = "(function() {\n";
-for (let i=0; i<files.length; i++) {
-    code += fs.readFileSync('../'+files[i], 'utf8') + "\n";
-}
-code += "\n})();"
+/**
+ * cssmin.js
+ * Author: Stoyan Stefanov - http://phpied.com/
+ * This is a JavaScript port of the CSS minification tool
+ * distributed with YUICompressor, itself a port
+ * of the cssmin utility by Isaac Schlueter - http://foohack.com/
+ * Permission is hereby granted to use the JavaScript version under the same
+ * conditions as the YUICompressor (original YUICompressor note below).
+ */
 
-function minify(source){
-    const ast = UglifyJS.parse(source);
-    return UglifyJS.minify(ast).code;
-}
-console.log('minifying');
-fs.writeFileSync('../emulator.min.css', uglifycss.processString(fs.readFileSync('../emulator.css', 'utf8')));
-fs.writeFileSync('../emulator.min.js', minify(code));
-console.log('done!');
+/**
+ * YUI Compressor
+ * http://developer.yahoo.com/yui/compressor/
+ * Author: Julien Lecomte - http://www.julienlecomte.net/
+ * Copyright (c) 2011 Yahoo! Inc. All rights reserved.
+ * The copyrights embodied in the content of this file are licensed
+ * by Yahoo! Inc. under the BSD (revised) open source license.
+ */
+
+module.exports = require('./uglifycss-lib')
